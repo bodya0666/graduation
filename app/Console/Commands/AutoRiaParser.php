@@ -71,9 +71,9 @@ class AutoRiaParser extends Command
             {
                 $src = trim(pq($value)->attr('href'));
                 if ($src != '/uk{link}') {
-                    Car::firstOr(['url' => $src], function () use ($src, $client) {
+//                    Car::firstOr(['url' => $src], function () use ($src, $client) {
                         $this->parseCar($src, $client);
-                    });
+//                    });
                 }
             }
 
@@ -104,7 +104,8 @@ class AutoRiaParser extends Command
             trim($dom->find('#breadcrumbs .item:eq(4)')->text()),
             $data
         );
-
+//        var_dump($data);
+//        die;
         $car = Car::create($data);
 
         $carId = $dom->find('body')->attr('data-auto-id');

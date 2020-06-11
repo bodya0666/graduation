@@ -353,10 +353,10 @@
                                 <p>Вид палива:</p>
                             </div>
                             <div class="spec_current-car">
-                                <p>{{ $car->engine }}</p>
-                                <p>{{ $car->distance }} км</p>
-                                <p>{{ $car->gear }}</p>
-                                <p>{{ $car->fuel }}</p>
+                                <p>{{ $car->engine ?? '-' }}</p>
+                                <p>{{ $car->distance ?? '-' }} км</p>
+                                <p>{{ $car->gear ?? '-' }}</p>
+                                <p>{{ $car->fuel ?? '-' }}</p>
                             </div>
                             <div class="spec_button">
                                 <a href="{{ $car->url }}" class="button_watch-list">Перейти на сайт</a>
