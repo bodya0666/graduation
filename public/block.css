@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial ;
+}
+
+header{
+    width: 100%;
+    height: 66px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+}
+header ul{
+    display: flex;
+}
+header ul li {
+    margin: 0 20px;
+    display: block;
+}
+header a{
+    color: #1b4691;
+    text-decoration: none;
+}
+.logo img{
+    height: 35px;
+    width: auto;
+    margin-left: 130px;
+}
+footer{
+    width: 100%;
+    height: 50px;
+    background: #f5f5f5;
+}
+article{
+    width: 100%;
+}
+body{
+    background: #F5F5F5;
+}
+
+.car-article{
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.car-article_car-photo{
+    width: 350px;
+    height: 240px;
+    border: 1px solid darkslateblue;
+
+}
+.car-article_title{
+    font-weight: bold;
+    font-size: 25px;
+    color: darkslateblue;
+}
+.car-article_info{
+    display: flex;
+    margin-left: 40px;
+    padding: 45px;
+    background: #fff;
+    width: 950px;
+}
+.car-article_auction{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.car-article_auction{
+    width: auto;
+    border-bottom: 1px solid coral;
+
+}
+.auction_time{
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: coral;
+    padding-right: 20px;
+
+}
+.auction_time img{
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}
+.car-article_spec{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.spec_name p{
+    margin: 10px;
+
+}
+.spec_current-car p{
+    margin: 10px;
+}
+.spec_button{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+.spec_button button:focus {
+    text-decoration: none;
+    outline: none;
+}
+.button_watch-list{
+    padding: 8px 40px;
+    color: #4a90e2;
+    font-size: 15px;
+    border: 1px solid grey;
+    background: white;
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+.button_more-info{
+    padding: 8px 40px;
+    color: white;
+    font-size: 15px;
+    border: 1px solid grey;
+    background: #4a90e2;
+    margin: 5px;
+    text-transform: uppercase;
+}
+.button_more-info:hover{
+    background: #519ff7;
+    color: white;
+    cursor: pointer;
+}
+.image {
+    display: flex;
+    justify-content: center;
+}
+.desc {
+    margin-left: 15px;
+}
+
+@media screen and (min-width: 640px) and (max-width: 980px){
+
+
+    .car-article{
+        flex-direction: column;
+    }
+    .car-article_car-photo{
+        display: flex;
+        align-self: center;
+
+    }
+}
+@media screen and (min-width: 0px) and (max-width: 640px){
+
+    .car-article_info{
+        display: flex;
+        flex-direction: column;
+    }
+    .car-article{
+        flex-direction: column;
+    }
+    .car-article_car-photo{
+        display: flex;
+        align-self: center;
+
+    }
+    .car-article_auction{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+    }
+    .car-article_spec{
+        display: flex;
+        flex-wrap: wrap;
+        justify-items: center;
+        font-size: 15px;
+    }
+    .spec_button{
+        margin-left: 50px;
+    }
+    .car-article_info{
+        margin-left: 0;
+    }
+    .auction_time{
+        font-size: 17px;
+        padding-right: 0;
+        padding-bottom: 10px;
+    }
+    section{
+        padding: 10px;
+    }
+    .car-article_car-photo{
+        height: 200px;
+        width: 250px;
+    }
+    header ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    header ul li{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 3px 0;
+    }
+    .logo img {
+        display: none;
+    }
+    header{
+        display: flex;
+        justify-content: center;
+    }
+}
+.button_watch-list{
+    text-align: center;
+}
