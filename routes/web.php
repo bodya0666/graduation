@@ -13,5 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/models', 'IndexController@models')->name('models');
 Route::resource('/', 'IndexController');
-Route::resource('brand', 'BrandController');
+Route::resource('admin/brand', 'admin\BrandController');
+Route::resource('admin/model', 'admin\ModelController');
+Route::resource('admin/siteModel', 'admin\SiteModelController');
+
+Auth::routes();
+
+Route::get('admin/home', 'admin\HomeController@index')->name('home');

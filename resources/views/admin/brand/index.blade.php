@@ -1,4 +1,4 @@
-@extends('brand.layout')
+@extends('layouts.admin')
 
 @section('content')
 <style>

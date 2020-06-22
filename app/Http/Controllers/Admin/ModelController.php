@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Brand;
+use App\Model;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 
-class BrandController extends Controller
+class ModelController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +20,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
+        $models = Model::all();
 
-        return view('brand.index', compact('brands'));
+        return view('admin.model.index', compact('models'));
     }
 
     /**
@@ -31,7 +32,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('brand.create');
+        $edit = false;
+        return view('admin.model.form', compact('edit'));
     }
 
     /**
@@ -45,9 +47,9 @@ class BrandController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
-        $show = Brand::create($validatedData);
+        $show = Model::create($validatedData);
 
-        return redirect('/brand')->with('success', 'Brand Case is successfully saved');
+        return redirect('/admin/model')->with('success', 'Model Case is successfully saved');
     }
 
     /**
@@ -69,9 +71,10 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::findOrFail($id);
+        $model = Model::findOrFail($id);
+        $edit = true;
 
-        return view('brand.edit', compact('brand'));
+        return view('admin.model.form', compact('model', 'edit'));
     }
 
     /**
@@ -86,22 +89,23 @@ class BrandController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
         ]);
-        Brand::whereId($id)->update($validatedData);
+        Model::whereId($id)->update($validatedData);
 
-        return redirect('/brand')->with('success', 'Brand Case Data is successfully updated');
+        return redirect('/admin/model')->with('success', 'Model Case Data is successfully updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return RedirectResponse|Redirector
+     * @throws Exception
      */
     public function destroy($id)
     {
-        $brand = Brand::findOrFail($id);
-        $brand->delete();
+        $model = Model::findOrFail($id);
+        $model->delete();
 
-        return redirect('/brand')->with('success', 'Brand Case Data is successfully deleted');
+        return redirect('/admin/model')->with('success', 'Model Case Data is successfully deleted');
     }
 }

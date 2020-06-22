@@ -1,4 +1,4 @@
-@extends('brand.layout')
+@extends('layouts.admin')
 
 @section('content')
 <style>
@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Add Brand Data
+      {{ $edit ? 'Edit' : 'Add' }} Brand Data
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,13 +20,16 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('brand.store') }}">
+      <form method="post" action="{{ $edit ? route('brand.update', $brand->id) : route('brand.store') }}">
           <div class="form-group">
               @csrf
+              @if ($edit)
+                  @method('PATCH')
+              @endif
               <label for="country_name">Name:</label>
-              <input type="text" class="form-control" name="name"/>
+              <input type="text" class="form-control" name="name" value="{{ $brand->name ?? null }}"/>
           </div>
-          <button type="submit" class="btn btn-primary">Add Data</button>
+          <button type="submit" class="btn btn-primary">{{ $edit ? 'Edit' : 'Add' }} Data</button>
       </form>
   </div>
 </div>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SiteModel extends Model
 {
-    protected $fillable = [
+    public $fillable = [
         'name',
         'model_id',
     ];

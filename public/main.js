@@ -1332,3 +1332,14 @@ eval("(function () {\n  var onClickToggleButtonHandler = function onClickToggleB
 /***/ })
 
 /******/ });
+
+$(document).on('change', '#car-details__brand', function (e) {
+    e.preventDefault();
+
+    $.get('/models?brand='+$(this).val(), function (resp) {
+        $('#car-details__model option').not(':eq(0)').remove();
+        $.each(resp, function (index, value) {
+            $('#car-details__model').append('<option value="'+value.value+'">'+value.name+'</option>');
+        });
+    }, 'JSON');
+});

@@ -359,3 +359,23 @@ body{
 .button_watch-list{
     text-align: center;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination li{
+    display: block;
+    padding: 4px 12px;
+    text-decoration: none;
+    text-underline: none;
+}
+.pagination a{
+    text-decoration: none;
+}
+.pagination .active{
+    background: #4a90e2;
+    color: #fff;
+    border-radius: 3px;
+}
