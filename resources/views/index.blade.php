@@ -1,7 +1,5 @@
 @extends('layouts.main')
 
-
-
 @section('content')
     <section class="banner">
         <div class="banner__wrapper container">
@@ -102,7 +100,6 @@
                             </div>
                             <div class="spec_button">
                                 <a href="{{ $car->url }}" class="button_watch-list">Перейти на сайт</a>
-                                <a class="button_more-info">Переглянути</a>
                             </div>
                         </div>
                     </div>

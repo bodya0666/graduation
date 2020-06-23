@@ -87,25 +87,53 @@ class AutoRiaParser extends Command
         $data['name'] = $dom->find('.auto-content_title')->text();
         $data['url'] = $url;
         $data['price'] = preg_replace('/\$| /', '', $dom->find('.price_value strong')->text());
-        $data['distance'] = (int)preg_replace('/[^0-9]/', '', $dom->find('#description_v3 dl dd.mhide span.argument')->text()) * 1000;
-        if ($dom->find('#description_v3 dl dd:eq(4) span.label')->text() == 'Коробка передач') {
-            $data['gear'] = $dom->find('#description_v3 dl dd:eq(4) span.argument')->text();
+//        $data['distance'] = (int)preg_replace('/[^0-9]/', '', $dom->find('#description_v3 dl dd.mhide span.argument')->text()) * 1000;
+//        if ($dom->find('#description_v3 dl dd:eq(4) span.label')->text() == 'Коробка передач') {
+//            $data['gear'] = $dom->find('#description_v3 dl dd:eq(4) span.argument')->text();
+//        }
+//        $engineData = $dom->find('#description_v3 dl dd:eq(2) span.argument')->text();
+//        $engineData = explode(' • ', $engineData);
+//        if (isset($engineData[0], $engineData[1])) {
+//            $data['engine'] = $engineData[0];
+//            $data['fuel'] = $engineData[1];
+//        }
+
+        $carInfo = $dom->find('#description_v3 dd');
+
+        foreach ($carInfo as $key => $info)
+        {
+            $info = pq($info);
+
+            $value = $info->find('.argument')->text();
+            switch ($info->find('.label')->text())
+            {
+                case 'Двигун':
+                        $engineData = explode(' • ', $value);
+                        if (isset($engineData[0], $engineData[1])) {
+                            $data['engine'] = $engineData[0];
+                            $data['fuel'] = $engineData[1];
+                        }
+                    break;
+                case 'Коробка передач':
+                    $data['gear'] = $value;
+                    break;
+                case 'Пробіг':
+                    $data['distance'] = $value;
+                    break;
+            }
         }
-        $engineData = $dom->find('#description_v3 dl dd:eq(2) span.argument')->text();
-        $engineData = explode(' • ', $engineData);
-        if (isset($engineData[0], $engineData[1])) {
-            $data['engine'] = $engineData[0];
-            $data['fuel'] = $engineData[1];
-        }
+
+
         $data['site_id'] = 1;
+        $pieces = explode(' ', $data['name']);
+        $data['year'] = array_pop($pieces);
 
         $this->saveBrandAndBrand(
             trim($dom->find('#breadcrumbs .item:eq(3)')->text()),
             trim($dom->find('#breadcrumbs .item:eq(4)')->text()),
             $data
         );
-//        var_dump($data);
-//        die;
+
         $car = Car::create($data);
 
         $carId = $dom->find('body')->attr('data-auto-id');

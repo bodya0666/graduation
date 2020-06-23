@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-      {{ $edit ? 'Edit' : 'Add' }} Model Data
+      {{ $edit ? 'Edit' : 'Add' }} SiteBrand Data
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,17 +20,14 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ $edit ? route('model.update', $model->id) : route('model.store') }}">
+      <form method="post" action="{{ $edit ? route('siteBrand.update', $siteBrand->id) : route('siteBrand.store') }}">
           <div class="form-group">
               @csrf
               @if ($edit)
                 @method('PATCH')
-              @endif
-              <label for="country_name">Name:</label>
-              <input type="text" class="form-control" name="name" value="{{ $model->name ?? null }}"/>
-              <label for="country_name">Brand ID:</label>
-              <input type="text" class="form-control" name="name" value="{{ $model->brand_id ?? null }}"/>
-          </div>
+              @endif        <label for="country_name">Name:</label>
+        <input type="text" class="form-control" name="name" value="{{ $siteBrand->name ?? null }}"/>        <label for="country_name">Brand_id:</label>
+        <input type="text" class="form-control" name="brand_id" value="{{ $siteBrand->brand_id ?? null }}"/>          </div>
           <button type="submit" class="btn btn-primary">{{ $edit ? 'Edit' : 'Add' }} Data</button>
       </form>
   </div>

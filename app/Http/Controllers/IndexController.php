@@ -15,35 +15,35 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $carsQuery = DB::table('car')
-            ->join('site_brand', 'car.site_brand_id', '=', 'site_brand.id')
-            ->join('brand', 'brand.id', '=', 'site_brand.brand_id')
-            ->join('site_model', 'car.site_model_id', '=', 'site_model.id')
-            ->join('model', 'model.id', '=', 'site_model.model_id')
+            ->leftJoin('site_brand', 'car.site_brand_id', '=', 'site_brand.id')
+            ->leftJoin('brand', 'brand.id', '=', 'site_brand.brand_id')
+            ->leftJoin('site_model', 'car.site_model_id', '=', 'site_model.id')
+            ->leftJoin('model', 'model.id', '=', 'site_model.model_id')
             ->join('car_image', 'car.id', '=', 'car_image.car_id')
             ->where('car_image.is_main', '=', 1)
             ->select(['car.*', 'car_image.name as image']);
 
         if ($request->has('mileageFrom')) {
-            $carsQuery->where('distance', '>', $request->query('mileageFrom'));
+            $carsQuery->where('distance', '>=', $request->query('mileageFrom'));
         }
 
         if ($request->has('mileageTo')) {
-            $carsQuery->where('distance', '<', $request->query('mileageTo'));
+            $carsQuery->where('distance', '<=', $request->query('mileageTo'));
         }
 
         if ($request->has('yearFrom')) {
-            $carsQuery->where('year', '>', $request->query('yearFrom'));
+            $carsQuery->where('year', '>=', $request->query('yearFrom'));
         }
 
         if ($request->has('yearTo')) {
-            $carsQuery->where('year', '<', $request->query('yearTo'));
+            $carsQuery->where('year', '<=', $request->query('yearTo'));
         }
 
         if ($request->has('brand')) {
             $carsQuery->where('brand.id', '=', $request->query('brand'));
         }
 
-        if ($request->has('model')) {
+        if ($request->has('brand')) {
             $models = Model::where('brand_id', '=', $request->query('brand'))->get();
         } else {
             $models = [];

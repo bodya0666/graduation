@@ -18,6 +18,10 @@ Route::resource('/', 'IndexController');
 Route::resource('admin/brand', 'admin\BrandController');
 Route::resource('admin/model', 'admin\ModelController');
 Route::resource('admin/siteModel', 'admin\SiteModelController');
+Route::resource('admin/siteBrand', 'admin\SiteBrandController');
+Route::resource('admin/car', 'admin\CarController');
+Route::view('rules', 'rules');
+Route::view('contacts', 'contacts');
 
 Auth::routes();
 

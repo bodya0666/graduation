@@ -18,10 +18,10 @@
             <a href="/">Головна</a>
         </li>
         <li>
-            <a href="">Контакти</a>
+            <a href="/contacts">Контакти</a>
         </li>
         <li>
-            <a href="">Правила сайту</a>
+            <a href="/rules">Правила сайту</a>
         </li>
     </ul>
 </header>

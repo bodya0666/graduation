@@ -39,7 +39,7 @@ class Crud extends Command
      */
     public function handle()
     {
-        $modelName = 'siteModel';
+        $modelName = 'car';
 
         $uperModelName = ucfirst($modelName);
 
@@ -52,8 +52,8 @@ class Crud extends Command
             mkdir($viewPath);
         }
 
-//        file_put_contents($viewPath . '/index.blade.php', $this->indexLayout($modelName));
-//        file_put_contents($viewPath . '/form.blade.php', $this->formLayout($modelName, $uperModelName));
+        file_put_contents($viewPath . '/index.blade.php', $this->indexLayout($modelName));
+        file_put_contents($viewPath . '/form.blade.php', $this->formLayout($modelName, $uperModelName));
 
     }
 

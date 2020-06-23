@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Model;
+use App\SiteBrand;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 
-class ModelController extends AdminController
+class SiteBrandController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +21,9 @@ class ModelController extends AdminController
      */
     public function index()
     {
-        $models = Model::all();
+        $siteBrands = SiteBrand::all();
 
-        return view('admin.model.index', compact('models'));
+        return view('admin.siteBrand.index', compact('siteBrands'));
     }
 
     /**
@@ -33,7 +34,8 @@ class ModelController extends AdminController
     public function create()
     {
         $edit = false;
-        return view('admin.model.form', compact('edit'));
+
+        return view('admin.siteBrand.form', compact('edit'));
     }
 
     /**
@@ -48,9 +50,9 @@ class ModelController extends AdminController
             'name' => 'required|max:255',
             'brand_id' => 'required|max:255',
         ]);
-        $show = Model::create($validatedData);
+        $show = SiteBrand::create($validatedData);
 
-        return redirect('/admin/model')->with('success', 'Model Case is successfully saved');
+        return redirect('/admin/siteBrand')->with('success', 'SiteBrand Case is successfully saved');
     }
 
     /**
@@ -72,10 +74,10 @@ class ModelController extends AdminController
      */
     public function edit($id)
     {
-        $model = Model::findOrFail($id);
+        $siteBrand = SiteBrand::findOrFail($id);
         $edit = true;
 
-        return view('admin.model.form', compact('model', 'edit'));
+        return view('admin.siteBrand.form', compact('siteBrand', 'edit'));
     }
 
     /**
@@ -91,9 +93,9 @@ class ModelController extends AdminController
             'name' => 'required|max:255',
             'brand_id' => 'required|max:255',
         ]);
-        Model::whereId($id)->update($validatedData);
+        SiteBrand::whereId($id)->update($validatedData);
 
-        return redirect('/admin/model')->with('success', 'Model Case Data is successfully updated');
+        return redirect('/admin/siteBrand')->with('success', 'SiteBrand Case Data is successfully updated');
     }
 
     /**
@@ -105,9 +107,9 @@ class ModelController extends AdminController
      */
     public function destroy($id)
     {
-        $model = Model::findOrFail($id);
-        $model->delete();
+        $siteBrand = SiteBrand::findOrFail($id);
+        $siteBrand->delete();
 
-        return redirect('/admin/model')->with('success', 'Model Case Data is successfully deleted');
+        return redirect('/admin/siteBrand')->with('success', 'SiteBrand Case Data is successfully deleted');
     }
 }

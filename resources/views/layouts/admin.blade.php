@@ -38,20 +38,20 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item{{ Request::path() == 'admin/brand' ? ' active' : null }}">
                             <a class="nav-link" href="/admin/brand">Brand <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Model</a>
+                        <li class="nav-item{{ Request::path() == 'admin/model' ? ' active' : null }}">
+                            <a class="nav-link" href="/admin/model">Model</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Site Brand</a>
+                        <li class="nav-item{{ Request::path() == 'admin/siteBrand' ? ' active' : null }}">
+                            <a class="nav-link" href="/admin/siteBrand">Site Brand</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Site Model</a>
+                        <li class="nav-item{{ Request::path() == 'admin/siteModel' ? ' active' : null }}">
+                            <a class="nav-link" href="/admin/siteModel">Site Model</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Car</a>
+                        <li class="nav-item{{ Request::path() == 'admin/car' ? ' active' : null }}">
+                            <a class="nav-link" href="/admin/car">Car</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest

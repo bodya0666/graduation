@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SiteBrand extends Model
 {
-    protected $fillable = [
+    public $fillable = [
         'name',
         'brand_id'
     ];
